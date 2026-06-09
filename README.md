@@ -1,64 +1,242 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# FormCraft — Drag-and-Drop Form Builder
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A fully-functional drag-and-drop Form Builder UI built within a Laravel project as part of a front-end developer assignment. Built with Laravel Blade components, vanilla CSS, and SortableJS.
 
-## About Laravel 
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Live Demo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Run locally with `php artisan serve` — see setup below.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Setup Steps
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
+- PHP 8.0+
+- Composer
+- A web server or PHP built-in server
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+```bash
+# 1. Clone the repository
+git clone https://github.com/pawanshekhawat/Edunet-Assignment.git
+cd Edunet-Assignment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# 2. Install PHP dependencies
+composer install
 
-### Premium Partners
+# 3. Copy environment file
+cp .env.example .env
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+# 4. Generate application key
+php artisan key:generate
 
-## Contributing
+# 5. Start the server
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Then open **http://127.0.0.1:8000** in your browser.
 
-## Code of Conduct
+> **Note:** No database setup is required. The Form Builder is entirely client-side — no backend calls are made.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Features
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Core Form Builder
+- **Drag-and-drop** from the right palette onto the left canvas
+- **Click-to-add** tiles as an alternative to dragging
+- **Drag to reorder** placed fields using the handle icon
+- **Edit** any field via the options panel (live preview updates)
+- **Duplicate** a field with all config preserved
+- **Delete** with inline confirmation toast
 
-## License
+### Field Types (18 total)
+| Category | Fields |
+|---|---|
+| Basic | Text Input, Text Area, Number Input, Email Input, Phone Input |
+| Selection | Dropdown, Radio Buttons, Checkboxes |
+| Advanced | Date Picker, File Upload |
+| Layout | Title, Description, New Line, Page Break, Hidden Field |
+| Location | State, City, State & City Combined |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Field Configuration
+- Label (all fields)
+- Placeholder text (Text, Number, Email, Phone, Textarea)
+- Min / Max characters (Text Input, Text Area)
+- Options list with add/remove rows (Dropdown, Radio, Checkboxes)
+- Required toggle (all applicable fields)
+- CSS Class (all fields)
+- Default value (Text, Number, Email, Hidden Field)
+- Content (Title, Description)
+- Remove Element (danger button)
+
+### Bonus Features ✅
+| Feature | Implementation |
+|---|---|
+| **Undo / Redo** | `Ctrl+Z` / `Ctrl+Y` — 60-step history stack |
+| **Form Preview Mode** | Toggle renders a live, interactive HTML form in a modal |
+| **LocalStorage Persistence** | Auto-saves on every change, restores on page refresh |
+| **Delete Confirmation** | Slide-in toast with Remove/Cancel actions |
+| **Drag-over Visual Feedback** | Blue border + purple tint on canvas during drag |
+
+---
+
+## Drag-and-Drop Library — SortableJS
+
+**Library chosen:** [SortableJS](https://sortablejs.github.io/Sortable/) v1.15.3 (CDN)
+
+**Rationale:**
+- **Zero build-step dependency** — loaded via CDN, no npm install or webpack bundling required. This project uses Laravel Mix but the form builder adds no new npm packages.
+- **Handles both use cases** in one library: palette→canvas (clone mode) and within-canvas reordering (sort mode).
+- **Proven at scale** — 28k+ GitHub stars, used in Vue Draggable, Shopify, and others.
+- **Excellent touch support** — works on tablets out of the box.
+- **Highly configurable** — `group`, `handle`, `ghostClass`, `animation` options give full visual control.
+
+**Alternatives considered:**
+- `interact.js` — lower-level, requires more boilerplate for clone-drop behavior.
+- Native HTML5 DnD API — inconsistent browser support, poor touch behavior, harder to implement smooth reordering.
+- `react-dnd` / `dnd-kit` — require React; overkill for a Blade-based project.
+
+---
+
+## Architecture & Assumptions
+
+### Architecture
+```
+resources/views/
+├── form.blade.php                  ← Standalone form builder page (no admin layout)
+└── components/
+    └── form-fields/
+        └── tile.blade.php          ← Blade component: renders each palette tile with SVG icon
+
+public/
+├── css/form-builder.css            ← Complete premium design system (CSS variables, tokens)
+└── js/form-builder.js              ← FormBuilderState + FormBuilder classes
+```
+
+**`FormBuilderState`** — Manages:
+- `fields[]` array (ordered field configs)
+- Undo/redo stacks (JSON snapshots)
+- LocalStorage persistence
+
+**`FormBuilder`** — Manages:
+- SortableJS initialization (palette clone mode + canvas sort mode)
+- DOM rendering (`renderCanvas`, `getFieldCardHTML`, `getFieldPreviewHTML`)
+- Field CRUD operations
+- Options panel (live config updates)
+- Preview modal, JSON modal, toast notifications
+- Keyboard shortcuts
+
+### Assumptions
+1. The Form Builder is the only page in this project — `routes/web.php` routes `/` to `GuestController@interviewAssessment` → `form.blade.php`.
+2. `form.blade.php` is a **standalone HTML page** (does not extend `layouts.admin`) to allow a clean, purpose-built Form Builder interface.
+3. No API calls are needed — all state is client-side with localStorage persistence.
+4. Tailwind CSS was **not** added (requires build step); custom CSS was used instead, which is equally valid per assignment spec ("Tailwind CSS or CSS Modules").
+5. The "Settings" tab is present in the UI but non-functional per assignment specification ("Only the Form Editor tab needs to be functional").
+6. The "Next" button shows the JSON schema in a modal and also logs it to the browser console.
+
+---
+
+## Sample JSON Output
+
+> Output produced by clicking the **Next** button after building a sample form.
+
+```json
+{
+  "title": "Contact Us",
+  "submissionUrl": "/api/contact",
+  "createdAt": "2026-06-09T08:00:00.000Z",
+  "fieldCount": 6,
+  "fields": [
+    {
+      "id": "field_1",
+      "type": "title",
+      "label": "Title",
+      "cssClass": "",
+      "content": "Get in Touch"
+    },
+    {
+      "id": "field_2",
+      "type": "text-input",
+      "label": "Full Name",
+      "placeholder": "Enter your full name",
+      "required": true,
+      "cssClass": "",
+      "minChars": "2",
+      "maxChars": "100",
+      "defaultValue": ""
+    },
+    {
+      "id": "field_3",
+      "type": "email-input",
+      "label": "Email Address",
+      "placeholder": "you@example.com",
+      "required": true,
+      "cssClass": "",
+      "defaultValue": ""
+    },
+    {
+      "id": "field_4",
+      "type": "phone-input",
+      "label": "Phone Number",
+      "placeholder": "+1 (555) 000-0000",
+      "required": false,
+      "cssClass": "",
+      "defaultValue": ""
+    },
+    {
+      "id": "field_5",
+      "type": "dropdown",
+      "label": "Subject",
+      "placeholder": "Select a subject",
+      "required": true,
+      "cssClass": "",
+      "options": ["General Inquiry", "Technical Support", "Billing", "Partnership"]
+    },
+    {
+      "id": "field_6",
+      "type": "textarea",
+      "label": "Message",
+      "placeholder": "Write your message here...",
+      "required": true,
+      "cssClass": "",
+      "minChars": "20",
+      "maxChars": "1000"
+    }
+  ]
+}
+```
+
+---
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl+Z` | Undo last action |
+| `Ctrl+Y` | Redo |
+| `Delete` | Delete selected field |
+| `Escape` | Deselect field / close modal |
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Laravel 8/9 (PHP) |
+| Templating | Laravel Blade + Blade Components |
+| Drag & Drop | SortableJS v1.15.3 (CDN) |
+| Styling | Vanilla CSS (CSS custom properties) |
+| Font | Inter (Google Fonts) |
+| State | Vanilla JS ES6 Classes |
+| Persistence | Browser localStorage |
+
+---
+
+## Repository
+
+**GitHub:** https://github.com/pawanshekhawat/Edunet-Assignment
